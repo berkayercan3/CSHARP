@@ -1,0 +1,241 @@
+Length metodu dizi botunu tam olarak verir. Mesela 4 elemanlı bir diziniz var diyelim. Size 4 değerini verir.
+GetUpperBound(0) metodu ise size üst sınırı verir. Mesela 4 elemanlı bir diziniz var diyelim. Size 3 değerini verir.
+GetLowerBound(0) metodu ise size alt sınırı verir. Mesela 4 elemanlı bir diziniz var diyelim. Size 0 değerini verir
+Int number1 = 20;
+
+        static int Add3( int number1, int number2) 
+        {
+            number1 = 30;
+            return number1 + number2;
+        }
+
+        static int Add4(ref int number1, int number2)   
+        {
+            number1 = 30;
+            return number1 + number2;
+        }
+
+bu iki metod da aslinda number1 degiskeninin degerini    degistirildigi saniliyor fakat ref (referans0 anahtar kelimesi sayesinde aslinda 2. metotta degisikligimiz gecerli olmus oldu
+C# içerisinde yer alan ref ve out değer türündeki verileri referans olarak metotlara geçmek için kullanılan anahtar kelimelerdir.
+C# veri türleri temel olarak değer ve referans olmak üzere ikiye ayrılır.
+Değer türleri (int, double, float, char .vb) belleğin stack bölgesinde tutulur.
+Referans türleri (string, diziler, object, nesneler) belleğin heap bölgesinde tutulur.
+Değer türleri referans türlerine göre daha hızlı çalışır ancak belleğin stack alanı sınırlı olduğu için diziler, nesneler belleğin heap bölgesinde oluşturulur.
+Heap bölgesinde oluşturulan referans türlerine belleğin başlangıç adresi ile erişim sağlanır ve herhangi bir yerde yapılan değişiklik verinin değişmesine neden olur.
+
+ref ve out un farki ise ref te degiskenimizin bir baslangic degeri olmasi lazimdi fakat out icin boyle bir kosul soz konusu degil. Ikiside ayni gorevi yapar.
+
+
+Method OverLoading ( Asiri Yukleme ) 
+	Mesela toplama islemi yapacak bir method olusturacagiz ve ismi toplama methodu olacak fakat bu toplama islemlerinin bazisini int bazisinida double tipinde yapmasini istiyoruz. Bunun icin ayni ismi kullanarak farkli islevleri yerine getiren method olusturup ayni isimlede farkli methodlar olusturdugumuz icin asiri yukleme isi yapmis oluruz
+	
+	
+ static int Add5(params int[] numbers)    // params ile birden çok istediğimiz kadar sayıyı fonksiyona atayabiliyoruz
+        {
+            return numbers.Sum(); // kalıp ifadedir girilen tüm sayıları toplayıp return yapmayı sağladı
+        }
+var result3 = Add5(1, 2, 3, 4, 5, 6, 7); // params kullandık
+
+
+
+
+Whıle ve DoWhıle
+
+Whıle de parantez ıcındekı kosul saglandıgı surece kod calısacaktır
+do whıle de ıse kosul saglanmiyorsa bile kod blogu 1 kere calisacaktir
+
+---------------------------------------------------------
+	while (number >= 0)
+            {
+                Console.WriteLine(100);
+            }
+---------------------------------------------------------
+	do
+            {
+                Console.WriteLine(number);
+                number--;
+            } while (0 < number);
+---------------------------------------------------------
+
+var result1 = sentence.ToUpper(); // herşeyi büyük harfle yazdı
+            var result2 = sentence.IndexOf("name"); // kelimenin hangi yerde başladığını gösterdi
+            var result3 = sentence.LastIndexOf(" "); // sondan 17. sırada boşluk var anlamına geldi
+            var result4 = sentence.Substring(3,6); // o aralıktaki kelimeleri al
+            var result5 = sentence.ToLower(); // herşeyi küçük yazar
+            var result6 = sentence.Replace(" ","-"); // boşluk yerine - koyduk her yere
+					(Replace yer degistirmek)
+            var result7 = sentence.Remove(2, 5);  // o aralıktaki ifaedeyi yok et
+					(remove kaldirmak)
+CLASSLAR
+	
+	Yapmak istedigimiz islemleri guruplara ayirip islemleri kolaylastirmaya yarar.
+Classlar geneldde proje ustune sag tik yaparak add den classi secip olustururuz ve boylece yeni acilan class ekranina gereken islemlerimizi yaparak main icerisindeki kalabaligi engellemis oluruz
+
+
+Customer isminde bir sinif olusturmussak ve bu sinifi main de kullanmak istiyorsak Customer customer = new Customer seklinde yazim kuralina da uygun bir ifade yaratmamiz gerekir
+
+
+INTERFACE
+
+interface sayesinde uzun uzun bazi seyleri yazmaktan kurtuluyoruz 
+yapısı gereği diğer sınıflara yol gösterici, rehberlik yapmak için oluşturulan,
+kendisinden implement edilen bir sınıfa doldurulması zorunlu olan bazı özelliklerin aktarılmasını sağlayan bir kavramdır
+
+interface Iperson    bu interface olusuturup icine a b ve c islemlerini yazmissak bu interface I kullancagimiz sinifta da bu a b ve c islemelerinin hepsini tanimlamamiz lazim
+{
+           a
+	b
+	c 
+}
+
+class student : Iperson interface nesnelerimizi implemente ettik yani uyguladik clasimizda ve gorundugu uzre interfacemizin a b ve c ozelliklerini kullanmamiz gerekti bu bir zorunluluktur
+{
+	a
+	b
+	c
+	
+	d
+}
+
+claslarimiza d gibi kendine ozel farkli ozellikler ekleyebiliriz bu interface ozelligine hicbir degisiklik yaratmaz
+
+
+
+ static void Main(string[] args)
+        {
+            giris();  // refactor edilen method
+
+            Console.ReadLine();
+
+        }
+
+        private static void giris()  // main icinde yazdiklarimizi refactor edip farkli bir yontem haline getirdik ve main icini temizledik bu yontemi de sadece ismi ile main icinde kullanabilmis olduk
+        {
+            PersonManager personManager = new PersonManager();
+
+            personManager.Add(new Customer { Id = 1, FirstName = "berkay", LastName = "ercan", Address = "ankara" });
+            // biz burada customer clasini cagirdik fakat interface sayesinde
+
+            personManager.Add(new Student { Id = 1, FirstName = "memet", LastName = "tekin", no = "111" });
+            // burada da ayni clas icin student classini da kullanabildik interface sayesinde
+        }
+
+        class PersonManager // sınıf var metot nerde ?
+        {
+            public void Add(IPerson person) // metotu olusturduk 
+            {
+                Console.WriteLine(person.FirstName );
+            }
+        }
+
+
+interface in kendisini new leyemeyiz interface ler soyut nesnelerdir asil isi yapan kisimlar interface ile implemente ettigimiz siniflardir siniflari newleyebilir cunku siniflar somut nesnelerdir
+
+
+INHERITANCE
+
+Inheritance (kalıtım), bir türetilen sınıfın özellik ve davranışlarını,
+bir alt sınıfın miras alarak sanki kendi üyeleriymiş gibi kullanmasıdır. Kalıtım fikrinin altında yatan en basit fikir,
+yeni bir sınıfın başka sınıfların fonksiyonelliklerine sahip olması ve genişletilmesidir.
+
+Temel sınıftan türetilmiş sınıflara aktarılan metotları her zaman olduğu gibi kullanmak istemeyebiliriz. Bu metotları türetilmiş sınıf içerisinde yeniden tanımlayabilmek için virtual ve override anahtar sözcüklerini kullanırız.
+
+Virtual metotlar kalıtım yolu ile aktarıldıkları sınıfların içerisinde override edilerek değiştirilebilirler. Eğer override edilmezlerse temel sınıf içerisinde tanımlandıkları şekilde çalışırlar.
+
+
+
+//SORUN MESELA !!!!  WORKER KISMINDA KAYDETME ISLEMINI YAPILMADAN ONCE KULLANICININ KAYITLI OLUP OLMADIGININ KONTROLUNUN YAPILMASINI ISTIYORSAK ?
+
+namespace VirtualMethods
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+           //ornek1();
+
+            Student student = new Student();
+            student.Insert("berkay ercan");
+
+            Worker worker = new Worker();
+            worker.Insert("memett demir");  
+
+            Teacher teacher = new Teacher();
+            teacher.Insert("ayse celik");
+            
+            Console.ReadLine();
+        }
+
+        //Baska bir kullanim sekli ornegi
+
+        //Temel sınıftan türetilmiş sınıflara aktarılan metotları her zaman olduğu gibi kullanmak istemeyebiliriz.
+        //Bu metotları türetilmiş sınıf içerisinde yeniden tanımlayabilmek için virtual ve override anahtar sözcüklerini kullanırız.
+
+        public class data // Temel sinifimiz bu oldugu icin ve bu sinifin degiskenlerini turetilmis siniflarda degistirebilmek icin VIRTUAL olarak tanimlanmasi gerekiyor
+        {
+            public virtual void Insert(string i)
+            {
+                Console.WriteLine("{0} kaydedildi", i); 
+            }
+        }
+
+        public class Student : data  // data yi inherite ettik 
+        {
+            //Aslinda olusturdugumuz 3 sinif da bos gozukuyor fakat kalitim sayesinde data sinifimiz in yontemlerini su an barindiriyor
+        }
+
+        public class Worker : data
+        {
+            public override void Insert(string i)
+            {
+                if(i=="memett demir")
+                {
+                    Console.WriteLine("{0} zaten kayitli",i); // insert metodu virtual olarak belirtildigi icin ovveride edilerek ana islevini degistirebildik 
+                }
+                else
+                {
+                    base.Insert(i); // eger memet demir kayitli degilse base deki kayit islemine normal olarak devam etmesini soyledik
+                }
+            }
+
+        }
+
+        public class Teacher : data
+        {
+
+        }
+
+
+ERISIM BELIRLEYICILER
+
+-Private (Gizli)
+	
+         Değişkene sadece kendi class’ı içinden ulaşılabileceği anlamına gelmektedir. Program içinde kesinlikle değiştirilmemesi gereken, kritik kodlarda kullanılmaktadır.
+
+-Public (Genel)
+
+         Bir değerin public olarak belirtilmesi; o değerin, kod içinde herhangi bir yerden erişilebilir durumda olmasını sağlamaktadır.
+
+-Protected (Korunumlu)
+
+          Kod içinde bir değerin protected olarak tanımlanması; o değere, bulunduğu class  ve ondan türetilen diğer sınıflar içinden erişilebilir olduğunu göstermektedir. Protected; bir anlamda, public ve private erişim belirleyicilerinin birleşimi olarak görülebilmektedir.
+
+-Internal (İçsel)
+
+         Internal olarak tanımlanan bir değer; aynı program içerisinden erişilebilir, fakat farklı bir program içerisinden erişilemez durumdadır. 
+
+-Protected Internal (İçsel Korunumlu)
+        Protected internal olarak tanımlanmış değer, tanımlandığı class’ın içinden ve ondan türetilen sınıfların içinden erişilebilir durumdadır. Türetilen sınıfın aynı program içinde olmaması sorun teşkil etmez.
+
+
+Berkay berkay = new berkay();   -- > boyle durumlarda parantezin asil anlami parametresiz bir bicimde calistirilacagini gosterir
+
+
+
+
+
+
+
+
+
+
